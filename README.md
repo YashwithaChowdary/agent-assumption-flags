@@ -17,12 +17,21 @@ At the end there is a short review: pinned questions, flagged assumptions, and t
 
     python flagged_agent.py
 
-The demo agent is scripted, so it runs offline and needs no API key. To use a real model, replace `ScriptedAgent` with a class that returns `Step` objects from an LLM.
+The demo agent is scripted, so it runs offline and needs no API key.
 
 ## Test
 
-    python -m unittest test_flagged_agent.py
+    python -m unittest test_flagged_agent.py test_llm_eval.py
+
+## Evaluate with a real LLM
+
+`llm_eval.py` runs five small tasks, each with a built-in trap (ambiguous dates, missing values, unknown exchange rate, unclear time frame, unit mismatch). For each task the model answers twice: plain, and flagged (answer plus confidence and assumptions). The harness then decides whether to continue, flag, pin or ask. The script reports how many plain answers were silently wrong and how many of those the harness surfaced.
+
+    set GEMINI_API_KEY=your_key      (or ANTHROPIC_API_KEY)
+    py llm_eval.py
+
+Results are written to `results.md` and `results.json`. The unit tests run the same pipeline offline with a fake model.
 
 ## Status
 
-Prototype. The agent in this demo is scripted and the thresholds are hand-picked. It has not been tested with real users.
+Prototype. `flagged_agent.py` uses a scripted agent; `llm_eval.py` uses a real model on five small tasks. Thresholds are hand-picked and there are no user studies yet.
