@@ -1,0 +1,65 @@
+[
+  {
+    "task": "Ambiguous dates",
+    "plain_correct": false,
+    "confidence": 1.0,
+    "action": "flag",
+    "trap_mentioned": true,
+    "assumptions": [
+      "Dates from Swedish companies follow the standard European format of DD/MM/YYYY.",
+      "03/04/2025 is April 3 (amount 100).",
+      "15/04/2025 is April 15 (amount 200).",
+      "02/05/2025 is May 2 (amount 50).",
+      "20/03/2025 is March 20 (amount 400).",
+      "Total for March (month 3) is 400.",
+      "Total for April (month 4) is 100 + 200 = 300.",
+      "Total for May (month 5) is 50."
+    ]
+  },
+  {
+    "task": "Missing values",
+    "plain_correct": true,
+    "confidence": 0.5,
+    "action": "defer",
+    "trap_mentioned": true,
+    "assumptions": [
+      "The sequence is periodic or symmetrical, making the blank values 100 and 120 respectively, or",
+      "The blanks are assumed to be such that the average equals one of the visible numbers, or",
+      "Without a clear pattern for the blanks, the average of the provided numbers (120, 80, 100) is 100, assuming the blanks average out to the same value."
+    ]
+  },
+  {
+    "task": "Unknown exchange rate",
+    "plain_correct": false,
+    "confidence": 0.95,
+    "action": "flag",
+    "trap_mentioned": true,
+    "assumptions": [
+      "The exchange rate between EUR and SEK is approximately 1 EUR = 10 SEK.",
+      "Total EUR = 100 + 50 = 150 EUR.",
+      "150 EUR converted to SEK = 150 * 10 = 1500 SEK.",
+      "Total SEK = 1500 + 200 (from original SEK orders) = 1700 SEK."
+    ]
+  },
+  {
+    "task": "Unclear time frame",
+    "plain_correct": false,
+    "confidence": 1.0,
+    "action": "flag",
+    "trap_mentioned": true,
+    "assumptions": [
+      "The year is divided into four quarters in standard chronological order (Q1, Q2, Q3, Q4).",
+      "\"Last quarter\" refers to the most recent quarter listed, which is Q4."
+    ]
+  },
+  {
+    "task": "Unit mismatch",
+    "plain_correct": true,
+    "confidence": 1.0,
+    "action": "flag",
+    "trap_mentioned": true,
+    "assumptions": [
+      "The total distance is calculated by converting all measurements to kilometers (5 km + 3 km + 2 km) and the unit of the answer is kilometers."
+    ]
+  }
+]
